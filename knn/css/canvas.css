@@ -1,0 +1,24 @@
+#homes {
+	width:800px;
+    height:800px;
+    border:1px solid black;
+    display:block;
+    margin:20px auto;
+}
+
+section.main-page { 
+	width: 900px; 
+	overflow: auto; 
+	margin: 0 auto; 
+	text-align: center;
+}
+
+ul.list-no-style { list-style-type: none; }
+li.horizontal { display: inline; padding-right: 2em; }
+
+.junior,
+.apartment { color: red; }
+.middle,
+.house { color: green; }
+.senior,
+.flat { color: blue; }
