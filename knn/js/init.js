@@ -10,8 +10,7 @@ var readData = function (file, cb) {
     var rawFile = new XMLHttpRequest();
     var result = [];
     rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
+    rawFile.onreadystatechange = function () {
         if(rawFile.readyState === 4)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
@@ -19,7 +18,6 @@ var readData = function (file, cb) {
                 var allText = rawFile.responseText;
                 var formatText = allText.split("\n");
                 $.each(formatText, function (k, v) {
-                    console.log('V: ', v);
                     var obj = JSON.parse(v);
                     result.push(obj);
                 });
@@ -100,7 +98,46 @@ var _run = function(data, mapper, reducer, formatter) {
         });
 
     return formatter(emitterReduce.values())
+};
+
+var sampleData = [
+    {quantity: 4, size: 10, type: 'flat'},
+    {quantity: 5, size: 12, type: 'flat'},
+    {quantity: 6, size: 11, type: 'house'},
+    {quantity: 2, size: 10, type: 'flat'},
+    {quantity: 3, size: 15, type: 'house'},
+    {quantity: 3, size: 16, type: 'apartment'},
+    {quantity: 1, size: 17, type: 'apartment'}
+];
+
+var knnMapper = function () {
+    //TODO knnMapper;
+};
+
+var knnReducer = function () {
+    //TODO knnReducer;
+};
+
+
+var knnJob = {
+    input: sampleData,
+    mapper: knnMapper('', ''),
+    reducer: knnReducer('', '', ''),
+    outputFormatter: function (x) {
+        return x
+    }
+};
+
+function runJob(job) {
+    return _run(job.input,
+        job.mapper,
+        job.reducer,
+        job.outputFormatter
+    );
 }
+
+var results = runJob(knnJob);
+console.log('Results: ', results);
 
 $("button#run").click(function () {
 	var $input = $('#kInput').val();
