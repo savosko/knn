@@ -8,6 +8,7 @@ var data2 = [
 
 ];
 
+//TEST
 Array.prototype.flatten = function () {
     return [].concat.apply([], this)
 };
